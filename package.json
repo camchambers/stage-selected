@@ -1,8 +1,12 @@
 {
   "name": "stage-selected",
   "displayName": "Stage Selected",
-  "description": "Stages code in git via right click + \"stage selected\" option.",
+  "description": "Adds a \"stage selected\" command to the editor context menu.",
   "version": "0.0.1",
+  "icon": "src/images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/camchambers/stage-selected"},
   "engines": {
     "vscode": "^1.79.0"
   },
