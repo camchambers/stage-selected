@@ -3,6 +3,7 @@
   "displayName": "Stage Selected",
   "description": "Adds a \"stage selected\" command to the editor context menu.",
   "version": "0.0.1",
+  "publisher": "ch4mb3rs",
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
