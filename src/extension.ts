@@ -1,25 +1,32 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	console.log('Stage Selected extension is now active!');
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "stage-selected" is now active!');
+	// Register the stage selected command
+	const stageSelectedDisposable = vscode.commands.registerCommand('stage-selected.stageSelected', async () => {
+		const editor = vscode.window.activeTextEditor;
+		if (!editor) {
+			vscode.window.showErrorMessage('No active editor found');
+			return;
+		}
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('stage-selected.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Stage Selected!');
+		const selection = editor.selection;
+		if (selection.isEmpty) {
+			vscode.window.showWarningMessage('No text selected');
+			return;
+		}
+
+		try {
+			// Use VS Code's built-in Git functionality to stage selected ranges
+			await vscode.commands.executeCommand('git.stageSelectedRanges');
+			vscode.window.showInformationMessage('Selected text staged successfully!');
+		} catch (error) {
+			vscode.window.showErrorMessage(`Failed to stage selected text: ${error}`);
+		}
 	});
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(stageSelectedDisposable);
 }
 
 // This method is called when your extension is deactivated

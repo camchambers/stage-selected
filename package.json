@@ -3,6 +3,7 @@
   "displayName": "Stage Selected",
   "description": "Adds a \"stage selected\" command to the editor context menu.",
   "version": "0.0.1",
+  "publisher": "ch4mb3rs",
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
@@ -11,7 +12,16 @@
     "vscode": "^1.79.0"
   },
   "categories": [
-    "Other"
+    "SCM Providers"
+  ],
+  "keywords": [
+    "git",
+    "stage",
+    "staging",
+    "partial",
+    "selection",
+    "source control",
+    "vcs"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
@@ -19,19 +29,17 @@
     "menus": {
       "editor/context": [
         {
-          "command": "git.stageSelectedRanges",
+          "command": "stage-selected.stageSelected",
           "group": "navigation",
-          "alt": "Stage Selected",
-          "when": "editorTextFocus && editorHasSelection"
+          "when": "editorTextFocus && editorHasSelection && gitOpenRepositoryCount != 0"
         }
       ]
     },
     "commands": [
       {
-        "command": "stage-selected.helloWorld",
-        "title": "Hello World"
+        "command": "stage-selected.stageSelected",
+        "title": "Stage Selected"
       }
-      
     ]
   },
   "scripts": {
