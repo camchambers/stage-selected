@@ -30,7 +30,7 @@
       "editor/context": [
         {
           "command": "stage-selected.stageSelected",
-          "group": "1_modification@1",
+          "group": "navigation",
           "when": "editorTextFocus && editorHasSelection && gitOpenRepositoryCount != 0"
         }
       ]
